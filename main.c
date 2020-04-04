@@ -1,33 +1,27 @@
-//
-//  main.c
-//  clang
-//
-//  Created by Masana on 2020/04/03.
-//  Copyright © 2020 伊藤政名. All rights reserved.
-//
+/*
+    読み込んだ正の整数値を逆順に表示
+*/
 
 #include <stdio.h>
  
-int main()
+int main(void)
 {
-    int sum = 0;
-    int cnt = 0;
-    int retry;
+    int no;
     
     do {
-        int t;
-        
-        printf("正数値を入力してください。：");
-        scanf("%d", &t);
-        
-        sum = sum + t;
-        cnt = cnt + 1;
-        
-        printf("まだ？<Yes...0/No...9>：");
-        scanf("%d", &retry);
-    } while (retry == 0);
+        printf("正の整数を入力してください。：");
+        scanf("%d", &no);
+        if (no <= 0)
+            puts("\a正でない数を入力しないでください。");
+    } while (no <= 0);
     
-    printf("合計は%dで平均は%.2fです。\n", sum, (double)sum / cnt);
+    /* noは0より大きくなっている */
+    printf("その数を逆から読むと");
+    while (no >0) {
+        printf("%d", no % 10);      /* 再開の桁の値を表示 */
+        no /= 10;                   /* 右に１桁ずらす */
+    }
+    puts("です。");
     
     return 0;
 }
