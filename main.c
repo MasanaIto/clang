@@ -1,52 +1,29 @@
 /*
-    学生の点数を読み込んで分布を表示
+    右下直角の直角二等辺三角形を表示
 */
 
 #include <stdio.h>
  
-#define NUMBER 80
+/*--- 文字chをn個連続して表示 ---*/
+void put_chars(int ch, int n)
+{
+    while (n-- > 0)
+        putchar(ch);
+}
 
 int main(void)
 {
-    int i, j;
-    int num;                  /* 実際の人数 */
-    int tensu[NUMBER];        /* 学生の点数 */
-    int bunpu[11] = {0};      /* 点数の分布 */
+    int i, len;
     
-    printf("人数を入力してください：");
+    printf("右下直角二等辺三角形を作ります。\n");
+    printf("短辺：");
+    scanf("%d", &len);
     
-    do {
-        scanf("%d", &num);
-        if (num < 1 || num > NUMBER)
-            printf("\a1〜%dで入力してください：", NUMBER);
-    } while (num < 1 || num > NUMBER);
-    
-    printf("%d人の点数を入力してください。\n", num);
-    
-    for (i = 0; i < num; i++) {
-        printf("%2d番：", i++);
-        do {
-            scanf("%d", &tensu[i]);
-            if (tensu[i] < 0 || tensu[i] > 100)
-                printf("\a0〜100で入力してください：");
-        } while (tensu[i] < 0 || tensu[i] > 100);
-        bunpu[tensu[i] / 10]++;
-    }
-    
-    puts("\n---分布グラフ---");
-    printf("    100：");
-    
-    for (j = 0; j < bunpu[10]; j++)
-        putchar('*');
-    putchar('\n');
-    
-    for (i = 9; i >= 0; i--) {
-        printf("%3d 〜 %3d：", i * 10, i * 10 + 9);
-        for (j = 0; j < bunpu[i]; j++)
-            putchar('*');
+    for (i = 1; i <= len; i++) {
+        put_chars(' ', len - i);
+        put_chars('*', i);
         putchar('\n');
     }
     
     return 0;
-
 }
