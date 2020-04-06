@@ -1,22 +1,21 @@
 #include <stdio.h>
  
-void hiroko(int *height)
-{
-    if (*height < 180)
-        *height = 180;
-}
-
 int main(void)
 {
-    int sato = 178;
-    int sanaka = 175;
-    int masaki = 179;
+    int ch;
+    FILE *fp;
+    char fname[FILENAME_MAX];
     
-    hiroko(&sanaka);
+    printf("コピー先ファイル名：");
+    scanf("%s\n", fname);
     
-    printf("佐藤くんの身長：%d\n", sato);
-    printf("さなかくんの身長：%d\n", sanaka);
-    printf("まさきくんの身長：%d\n", masaki);
-    
+    if ((fp = fopen(fname, "w")) == NULL)
+        printf("\aコピー先ファイルをオープンできません。\n");
+    else {
+        while ((ch = fgetc(stdin)) != EOF)
+            fputc(ch, fp);
+        fclose(fp);
+    }
+
     return 0;
 }
