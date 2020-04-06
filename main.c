@@ -1,29 +1,22 @@
-/*
-    右下直角の直角二等辺三角形を表示
-*/
-
 #include <stdio.h>
  
-/*--- 文字chをn個連続して表示 ---*/
-void put_chars(int ch, int n)
+void hiroko(int *height)
 {
-    while (n-- > 0)
-        putchar(ch);
+    if (*height < 180)
+        *height = 180;
 }
 
 int main(void)
 {
-    int i, len;
+    int sato = 178;
+    int sanaka = 175;
+    int masaki = 179;
     
-    printf("右下直角二等辺三角形を作ります。\n");
-    printf("短辺：");
-    scanf("%d", &len);
+    hiroko(&sanaka);
     
-    for (i = 1; i <= len; i++) {
-        put_chars(' ', len - i);
-        put_chars('*', i);
-        putchar('\n');
-    }
+    printf("佐藤くんの身長：%d\n", sato);
+    printf("さなかくんの身長：%d\n", sanaka);
+    printf("まさきくんの身長：%d\n", masaki);
     
     return 0;
 }
